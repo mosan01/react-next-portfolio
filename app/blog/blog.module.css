@@ -1,0 +1,138 @@
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 3.5rem 1.25rem 5rem;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+  letter-spacing: -0.02em;
+}
+
+.sub {
+  opacity: 0.75;
+  line-height: 1.6;
+}
+
+.notice {
+  margin-top: 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+  background: rgba(var(--callout-rgb), 0.18);
+  padding: 1.1rem 1.1rem;
+}
+
+.code {
+  font-family: var(--font-mono);
+  opacity: 0.9;
+}
+
+.list {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.25rem;
+}
+
+.card {
+  border-radius: 18px;
+  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--tile-start-rgb), 0.16),
+    rgba(var(--tile-end-rgb), 0.16)
+  );
+  padding: 1.1rem 1.1rem 1.05rem;
+  transition: transform 160ms ease, border-color 160ms ease,
+    background 160ms ease;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(var(--card-border-rgb), 0.6);
+}
+
+.cardTitle {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  opacity: 0.75;
+}
+
+.desc {
+  opacity: 0.85;
+  line-height: 1.7;
+}
+
+.back {
+  display: inline-block;
+  font-family: var(--font-mono);
+  opacity: 0.85;
+  margin-top: 1rem;
+}
+
+.article {
+  margin-top: 1.25rem;
+  border-radius: 20px;
+  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+  background: rgba(var(--callout-rgb), 0.12);
+  padding: 1.25rem;
+}
+
+.article h1,
+.article h2,
+.article h3 {
+  letter-spacing: -0.01em;
+  margin: 1.2em 0 0.45em;
+}
+
+.article p {
+  line-height: 1.9;
+  opacity: 0.95;
+  margin: 0.8em 0;
+}
+
+.article a {
+  text-decoration: underline;
+}
+
+.article pre {
+  overflow: auto;
+  border-radius: 14px;
+  padding: 1rem;
+  background: rgba(var(--card-rgb), 0.12);
+  border: 1px solid rgba(var(--callout-border-rgb), 0.25);
+}
+
+.article code {
+  font-family: var(--font-mono);
+}
+
+@media (prefers-reduced-motion) {
+  .card {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .page {
+    padding: 3.2rem 1rem 4.5rem;
+  }
+}

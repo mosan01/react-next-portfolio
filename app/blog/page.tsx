@@ -26,9 +26,6 @@ export default async function BlogIndexPage() {
             <h1 className={styles.title}>Blog</h1>
             <p className={styles.sub}>microCMSを接続すると記事が表示されます。</p>
           </div>
-          <Link href="/" className={styles.back}>
-            ← Home
-          </Link>
         </header>
 
         <div className={styles.notice}>
@@ -67,9 +64,6 @@ export default async function BlogIndexPage() {
           <h1 className={styles.title}>Blog</h1>
           <p className={styles.sub}>制作メモ・学び・記録。</p>
         </div>
-        <Link href="/" className={styles.back}>
-          ← Home
-        </Link>
       </header>
 
       <div className={styles.list}>

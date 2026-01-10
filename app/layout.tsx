@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import BackToTopButton from "./_components/BackToTopButton";
+import SiteFooter from "./_components/SiteFooter";
+import SiteHeader from "./_components/SiteHeader";
 
 export const metadata: Metadata = {
-  title: "森岡知也 | Portfolio",
+  title: {
+    default: "Portfolio",
+    template: "%s | Portfolio",
+  },
   description: "森岡知也（専門学生）のポートフォリオサイト",
 };
 
@@ -16,7 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <SiteHeader />
+        {children}
+        <BackToTopButton />
+        <SiteFooter />
+      </body>
     </html>
   );
 }

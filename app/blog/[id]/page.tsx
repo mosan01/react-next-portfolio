@@ -7,6 +7,55 @@ import styles from "../blog.module.css";
 
 export const revalidate = 60;
 
+type TocItem = {
+  id: string;
+  level: 2 | 3;
+  title: string;
+};
+
+function stripTags(html: string) {
+  return html.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+}
+
+function buildTocAndInjectIds(html: string): { toc: TocItem[]; html: string } {
+  const toc: TocItem[] = [];
+  let index = 0;
+
+  const out = html.replace(
+    /<h([23])([^>]*)>([\s\S]*?)<\/h\1>/gi,
+    (full, levelRaw: string, attrs: string, inner: string) => {
+      const level = Number(levelRaw) as 2 | 3;
+      const title = stripTags(inner);
+      if (!title) return full;
+
+      const idMatch = attrs.match(/\sid=["']([^"']+)["']/i);
+      const id = idMatch?.[1] ?? `section-${++index}`;
+      toc.push({ id, level, title });
+
+      if (idMatch) return full;
+
+      // inject id while keeping other attributes
+      return `<h${level} id="${id}"${attrs}>${inner}</h${level}>`;
+    }
+  );
+
+  // ensure ids are unique (in case original content has duplicates)
+  const seen = new Set<string>();
+  const uniqueToc = toc.map((item) => {
+    if (!seen.has(item.id)) {
+      seen.add(item.id);
+      return item;
+    }
+    const nextId = `${item.id}-${++index}`;
+    seen.add(nextId);
+    return { ...item, id: nextId };
+  });
+
+  // If we changed IDs for duplicates, we won't rewrite HTML again here (rare).
+  // In typical microCMS content, duplicates don't occur.
+  return { toc: uniqueToc, html: out };
+}
+
 function formatDate(iso: string | undefined) {
   if (!iso) return "";
   const date = new Date(iso);
@@ -48,9 +97,6 @@ export default async function BlogDetailPage({ params }: PageProps) {
             <h1 className={styles.title}>Blog</h1>
             <p className={styles.sub}>microCMSを接続すると記事が表示されます。</p>
           </div>
-          <Link href="/blog" className={styles.back}>
-            ← Blog
-          </Link>
         </header>
         <div className={styles.notice}>
           <p>
@@ -79,6 +125,8 @@ export default async function BlogDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const { toc, html } = buildTocAndInjectIds(post.content);
+
   return (
     <main className={styles.page}>
       <header className={styles.header}>
@@ -86,15 +134,28 @@ export default async function BlogDetailPage({ params }: PageProps) {
           <h1 className={styles.title}>{post.title}</h1>
           <p className={styles.sub}>{formatDate(post.publishedAt ?? post.createdAt)}</p>
         </div>
-        <Link href="/blog" className={styles.back}>
-          ← Blog
-        </Link>
       </header>
+
+      {toc.length > 0 ? (
+        <nav className={styles.toc} aria-label="目次">
+          <div className={styles.tocTitle}>目次</div>
+          <ul className={styles.tocList}>
+            {toc.map((item) => (
+              <li key={item.id} className={item.level === 3 ? styles.tocItemH3 : styles.tocItem}>
+                <a href={`#${item.id}`}>{item.title}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ) : null}
 
       <article
         className={styles.article}
-        dangerouslySetInnerHTML={{ __html: post.content }}
+        dangerouslySetInnerHTML={{ __html: html }}
       />
+      <p style={{ marginTop: "1rem", opacity: 0.8 }}>
+        <Link href="/blog">記事一覧に戻る</Link>
+      </p>
     </main>
   );
 }

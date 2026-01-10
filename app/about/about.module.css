@@ -1,0 +1,97 @@
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 3.5rem 1.25rem 5rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+  letter-spacing: -0.02em;
+}
+
+.sub {
+  opacity: 0.75;
+  line-height: 1.6;
+}
+
+.section {
+  margin-top: 2rem;
+}
+
+.h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.card {
+  border-radius: 14px;
+  border: 1px solid rgba(var(--callout-border-rgb), 1);
+  background: rgba(var(--callout-rgb), 1);
+  padding: 1rem;
+  display: grid;
+  gap: 0.6rem;
+  box-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.06);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.card:hover {
+  border-color: rgba(var(--foreground-rgb), 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px rgba(var(--shadow-rgb), 0.12);
+}
+
+.nameRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.email {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: rgb(var(--accent-rgb));
+}
+
+.text {
+  line-height: 1.85;
+  opacity: 0.92;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pill {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--callout-border-rgb), 1);
+  background: rgba(var(--callout-rgb), 1);
+  opacity: 0.9;
+  transition: transform 160ms ease, border-color 160ms ease;
+}
+
+.pill:hover {
+  border-color: rgba(var(--accent-rgb), 0.55);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 520px) {
+  .page {
+    padding: 3.2rem 1rem 4.5rem;
+  }
+}

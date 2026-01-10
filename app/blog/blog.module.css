@@ -25,9 +25,10 @@
 .notice {
   margin-top: 1rem;
   border-radius: 18px;
-  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
-  background: rgba(var(--callout-rgb), 0.18);
+  border: 1px solid rgba(var(--callout-border-rgb), 1);
+  background: rgba(var(--callout-rgb), 1);
   padding: 1.1rem 1.1rem;
+  box-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.06);
 }
 
 .code {
@@ -43,22 +44,19 @@
 
 .card {
   border-radius: 18px;
-  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
-  background: linear-gradient(
-    to bottom,
-    rgba(var(--tile-start-rgb), 0.16),
-    rgba(var(--tile-end-rgb), 0.16)
-  );
+  border: 1px solid rgba(var(--callout-border-rgb), 1);
+  background: rgba(var(--callout-rgb), 1);
   padding: 1.1rem 1.1rem 1.05rem;
-  transition: transform 160ms ease, border-color 160ms ease,
-    background 160ms ease;
+  transition: border-color 160ms ease, background 160ms ease;
   display: grid;
   gap: 0.45rem;
+  box-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.06);
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(var(--card-border-rgb), 0.6);
+  border-color: rgba(var(--foreground-rgb), 0.25);
+  background: rgba(var(--card-rgb), 1);
+  text-decoration: none;
 }
 
 .cardTitle {
@@ -84,12 +82,58 @@
   margin-top: 1rem;
 }
 
+.back:hover {
+  text-decoration: none;
+}
+
 .article {
   margin-top: 1.25rem;
   border-radius: 20px;
-  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
-  background: rgba(var(--callout-rgb), 0.12);
+  border: 1px solid rgba(var(--callout-border-rgb), 1);
+  background: rgba(var(--callout-rgb), 1);
   padding: 1.25rem;
+  box-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.06);
+}
+
+.toc {
+  margin-top: 1.25rem;
+  border-radius: 18px;
+  border: 1px solid rgba(var(--callout-border-rgb), 1);
+  background: rgba(var(--callout-rgb), 1);
+  padding: 1rem 1.1rem;
+  box-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.06);
+}
+
+.tocTitle {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  opacity: 0.75;
+  margin-bottom: 0.65rem;
+}
+
+.tocList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.tocItem,
+.tocItemH3 {
+  line-height: 1.6;
+  opacity: 0.92;
+}
+
+.tocItemH3 {
+  padding-left: 1rem;
+  opacity: 0.85;
+}
+
+.toc a {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
 .article h1,
@@ -113,8 +157,8 @@
   overflow: auto;
   border-radius: 14px;
   padding: 1rem;
-  background: rgba(var(--card-rgb), 0.12);
-  border: 1px solid rgba(var(--callout-border-rgb), 0.25);
+  background: rgba(var(--callout-rgb), 1);
+  border: 1px solid rgba(var(--callout-border-rgb), 1);
 }
 
 .article code {
@@ -124,10 +168,6 @@
 @media (prefers-reduced-motion) {
   .card {
     transition: none;
-  }
-
-  .card:hover {
-    transform: none;
   }
 }
 

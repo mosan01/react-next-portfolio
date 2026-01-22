@@ -18,10 +18,10 @@
   background: linear-gradient(
     90deg,
     rgba(var(--accent-rgb), 0),
-    rgba(var(--accent-rgb), 0.65),
+    rgba(var(--accent-rgb), 0.95),
     rgba(var(--accent-rgb), 0)
   );
-  opacity: 0.65;
+  opacity: 0.85;
   pointer-events: none;
 }
 
@@ -40,6 +40,22 @@
   align-items: center;
   gap: 0.6rem;
   min-width: 0;
+}
+
+.brandName {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: 1.05rem;
+  line-height: 1;
+  opacity: 0.96;
+}
+
+.brandDot {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .brandIcon {
@@ -80,18 +96,31 @@
 }
 
 .desktopNavLink {
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
+  font-family: var(--font-sans);
+  font-size: 0.93rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
   padding: 0.45rem 0.65rem;
   border-radius: 12px;
   border: 1px solid transparent;
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 .desktopNavLink:hover {
   border-color: rgba(var(--callout-border-rgb), 1);
   background: rgba(var(--callout-rgb), 1);
   text-decoration: none;
+}
+
+.desktopNavLink[data-active="true"] {
+  border-color: rgba(var(--foreground-rgb), 0.18);
+  background: rgba(var(--callout-rgb), 1);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.0);
+}
+
+html[data-theme="dark"] .desktopNavLink[data-active="true"] {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12), 0 12px 28px rgba(var(--shadow-rgb), 0.35);
 }
 
 .desktopNavLink:focus-visible {
@@ -129,8 +158,10 @@
 }
 
 .mobileNavLink {
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
+  font-family: var(--font-sans);
+  font-size: 0.93rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
   padding: 0.45rem 0.7rem;
   border-radius: 10px;
   border: 1px solid transparent;
@@ -141,6 +172,16 @@
   border-color: rgba(var(--callout-border-rgb), 1);
   background: rgba(var(--callout-rgb), 1);
   text-decoration: none;
+}
+
+.mobileNavLink[data-active="true"] {
+  border-color: rgba(var(--foreground-rgb), 0.18);
+  background: rgba(var(--callout-rgb), 1);
+}
+
+html[data-theme="dark"] .mobileNavLink[data-active="true"] {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
 }
 
 .mobileNavLink:focus-visible {

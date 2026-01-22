@@ -28,6 +28,7 @@ export default function AboutPage() {
 
   return (
     <main className={styles.page}>
+      <div className={styles.heroBg} aria-hidden="true" />
       <header className={styles.header}>
         <h1 className={styles.title}>About</h1>
         <p className={styles.sub}>{profile.role}</p>

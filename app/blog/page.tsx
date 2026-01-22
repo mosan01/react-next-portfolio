@@ -21,6 +21,7 @@ export default async function BlogIndexPage() {
   if (!isMicroCMSConfigured()) {
     return (
       <main className={styles.page}>
+        <div className={styles.heroBg} aria-hidden="true" />
         <header className={styles.header}>
           <div>
             <h1 className={styles.title}>Blog</h1>
@@ -59,6 +60,7 @@ export default async function BlogIndexPage() {
 
   return (
     <main className={styles.page}>
+      <div className={styles.heroBg} aria-hidden="true" />
       <header className={styles.header}>
         <div>
           <h1 className={styles.title}>Blog</h1>

@@ -1,7 +1,26 @@
 .page {
+  position: relative;
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 3.5rem 1.25rem 5rem;
+}
+
+.heroBg {
+  position: absolute;
+  top: -140px;
+  left: 50%;
+  width: 100vw;
+  height: clamp(360px, 55vh, 620px);
+  transform: translateX(-50%);
+  pointer-events: none;
+  background:
+    radial-gradient(560px 300px at -18% 18%, rgba(var(--accent-rgb), 0.22), rgba(var(--accent-rgb), 0)
+        60%),
+    radial-gradient(520px 260px at 88% 14%, rgba(var(--accent-2-rgb), 0.16), rgba(var(--accent-2-rgb), 0)
+        62%);
+  filter: blur(18px) saturate(1.25);
+  opacity: 0.74;
+  animation: heroDrift 18s ease-in-out infinite;
 }
 
 .header {
@@ -13,6 +32,7 @@
 }
 
 .title {
+  font-family: var(--font-display);
   font-size: clamp(1.8rem, 3.2vw, 2.4rem);
   letter-spacing: -0.02em;
 }
@@ -24,11 +44,16 @@
 
 .notice {
   margin-top: 1rem;
-  border-radius: 18px;
-  border: 1px solid rgba(var(--callout-border-rgb), 1);
-  background: rgba(var(--callout-rgb), 1);
+  border-radius: var(--radius-lg);
+  border: 2px solid transparent;
+  background:
+    linear-gradient(rgba(var(--callout-rgb), 0.92), rgba(var(--callout-rgb), 0.92)) padding-box,
+    linear-gradient(90deg, rgba(var(--accent-rgb), 0.85), rgba(var(--accent-2-rgb), 0.82)) border-box;
+  background-size: 100% 100%, 240% 240%;
+  background-position: 0 0, 0% 50%;
   padding: 1.1rem 1.1rem;
-  box-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.06);
+  box-shadow: var(--shadow-sm);
+  animation: borderFlow 9s ease-in-out infinite;
 }
 
 .code {
@@ -43,14 +68,19 @@
 }
 
 .card {
-  border-radius: 18px;
-  border: 1px solid rgba(var(--callout-border-rgb), 1);
-  background: rgba(var(--callout-rgb), 1);
+  border-radius: var(--radius-lg);
+  border: 2px solid transparent;
+  background:
+    linear-gradient(rgba(var(--callout-rgb), 0.92), rgba(var(--callout-rgb), 0.92)) padding-box,
+    linear-gradient(90deg, rgba(var(--accent-rgb), 0.85), rgba(var(--accent-2-rgb), 0.82)) border-box;
+  background-size: 100% 100%, 240% 240%;
+  background-position: 0 0, 0% 50%;
   padding: 1.1rem 1.1rem 1.05rem;
   transition: border-color 160ms ease, background 160ms ease;
   display: grid;
   gap: 0.45rem;
-  box-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.06);
+  box-shadow: var(--shadow-sm);
+  animation: borderFlow 9s ease-in-out infinite;
 }
 
 .card:hover {
@@ -89,19 +119,29 @@
 .article {
   margin-top: 1.25rem;
   border-radius: 20px;
-  border: 1px solid rgba(var(--callout-border-rgb), 1);
-  background: rgba(var(--callout-rgb), 1);
+  border: 2px solid transparent;
+  background:
+    linear-gradient(rgba(var(--callout-rgb), 0.92), rgba(var(--callout-rgb), 0.92)) padding-box,
+    linear-gradient(90deg, rgba(var(--accent-rgb), 0.85), rgba(var(--accent-2-rgb), 0.82)) border-box;
+  background-size: 100% 100%, 240% 240%;
+  background-position: 0 0, 0% 50%;
   padding: 1.25rem;
-  box-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.06);
+  box-shadow: var(--shadow-sm);
+  animation: borderFlow 10s ease-in-out infinite;
 }
 
 .toc {
   margin-top: 1.25rem;
-  border-radius: 18px;
-  border: 1px solid rgba(var(--callout-border-rgb), 1);
-  background: rgba(var(--callout-rgb), 1);
+  border-radius: var(--radius-lg);
+  border: 2px solid transparent;
+  background:
+    linear-gradient(rgba(var(--callout-rgb), 0.92), rgba(var(--callout-rgb), 0.92)) padding-box,
+    linear-gradient(90deg, rgba(var(--accent-rgb), 0.85), rgba(var(--accent-2-rgb), 0.82)) border-box;
+  background-size: 100% 100%, 240% 240%;
+  background-position: 0 0, 0% 50%;
   padding: 1rem 1.1rem;
-  box-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.06);
+  box-shadow: var(--shadow-sm);
+  animation: borderFlow 10s ease-in-out infinite;
 }
 
 .tocTitle {
@@ -110,6 +150,30 @@
   letter-spacing: 0.06em;
   opacity: 0.75;
   margin-bottom: 0.65rem;
+}
+
+@keyframes borderFlow {
+  0% {
+    background-position: 0 0, 0% 50%;
+  }
+  50% {
+    background-position: 0 0, 100% 50%;
+  }
+  100% {
+    background-position: 0 0, 0% 50%;
+  }
+}
+
+@keyframes heroDrift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(14px, 10px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .tocList {
@@ -168,6 +232,14 @@
 @media (prefers-reduced-motion) {
   .card {
     transition: none;
+  }
+
+  .heroBg,
+  .notice,
+  .card,
+  .article,
+  .toc {
+    animation: none;
   }
 }
 

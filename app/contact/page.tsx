@@ -13,6 +13,7 @@ export default function ContactPage() {
 
   return (
     <main className={styles.page}>
+      <div className={styles.heroBg} aria-hidden="true" />
       <header className={styles.header}>
         <h1 className={styles.title}>Contact</h1>
         <p className={styles.sub}>連絡先・応募用の情報まとめ</p>

@@ -33,13 +33,13 @@ export default function Home() {
             </p>
 
             <div className={styles.ctaRow}>
-              <Link className={styles.secondaryCta} href="/about">
+              <Link className={`${styles.secondaryCta} ${styles.whiteCta}`} href="/about">
                 About（プロフィール）
               </Link>
               <Link className={styles.secondaryCta} href="/blog">
                 Blog（記事一覧）
               </Link>
-              <Link className={styles.primaryCta} href="/contact">
+              <Link className={styles.secondaryCta} href="/contact">
                 Contact（連絡先）
               </Link>
               <a

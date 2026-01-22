@@ -19,21 +19,25 @@
 
 .heroBg {
   position: absolute;
-  inset: -80px -60px;
+  top: -140px;
+  left: 50%;
+  width: 100vw;
+  height: clamp(360px, 55vh, 620px);
+  transform: translateX(-50%);
   pointer-events: none;
   background:
     radial-gradient(
       560px 300px at -18% 18%,
-      rgba(var(--accent-rgb), 0.11),
+      rgba(var(--accent-rgb), 0.22),
       rgba(var(--accent-rgb), 0) 60%
     ),
     radial-gradient(
       520px 260px at 88% 14%,
-      rgba(var(--shadow-rgb), 0.08),
+      rgba(var(--accent-2-rgb), 0.16),
       rgba(var(--shadow-rgb), 0) 62%
     );
-  filter: blur(22px) saturate(1.06);
-  opacity: 0.52;
+  filter: blur(18px) saturate(1.25);
+  opacity: 0.74;
 }
 
 .heroInner {
@@ -47,14 +51,30 @@
   font-size: 0.95rem;
 }
 
+.kicker::after {
+  content: "";
+  display: block;
+  width: 84px;
+  height: 3px;
+  margin-top: 0.55rem;
+  border-radius: 999px;
+  background: var(--accent-gradient);
+  opacity: 0.9;
+}
+
 .title {
+  font-family: var(--font-display);
   font-size: clamp(2.4rem, 5vw, 4.2rem);
   line-height: 1.03;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .titleAccent {
-  color: inherit;
+  display: inline-block;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .lead {
@@ -73,41 +93,60 @@
 }
 
 .primaryCta {
-  padding: 0.8rem 1.05rem;
-  border-radius: 14px;
-  border: 1px solid rgba(var(--foreground-rgb), 1);
-  background: rgb(var(--foreground-rgb));
+  padding: 0.82rem 1.1rem;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  background:
+    linear-gradient(rgb(var(--foreground-rgb)), rgb(var(--foreground-rgb))) padding-box,
+    var(--accent-gradient) border-box;
   color: rgb(var(--background-end-rgb));
   font-weight: 700;
-  box-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.08);
+  box-shadow: var(--shadow-sm);
 }
 
 .secondaryCta {
-  padding: 0.8rem 1.05rem;
-  border-radius: 14px;
-  border: 1px solid rgba(var(--callout-border-rgb), 1);
-  background: rgba(var(--callout-rgb), 1);
+  padding: 0.82rem 1.1rem;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  background:
+    linear-gradient(rgba(var(--callout-rgb), 0.92), rgba(var(--callout-rgb), 0.92)) padding-box,
+    linear-gradient(
+        90deg,
+        rgba(var(--accent-rgb), 0.75),
+        rgba(var(--accent-2-rgb), 0.7)
+      )
+      border-box;
   opacity: 1;
-  box-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.06);
+  box-shadow: var(--shadow-sm);
+}
+
+.whiteCta {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.96)) padding-box,
+    var(--accent-gradient) border-box;
+  color: rgb(11, 18, 32);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12), var(--shadow-md);
 }
 
 .primaryCta,
 .secondaryCta {
-  transition: border-color 140ms ease, background 140ms ease, color 140ms ease, transform 160ms ease,
-    box-shadow 160ms ease;
+  transition: border-color 140ms ease, background 140ms ease, color 140ms ease, transform 180ms ease,
+    box-shadow 180ms ease, filter 180ms ease;
 }
 
 .primaryCta:hover,
 .secondaryCta:hover {
-  border-color: rgba(var(--foreground-rgb), 0.35);
-  background: rgba(var(--callout-rgb), 1);
+  border-color: rgba(var(--foreground-rgb), 0.25);
   text-decoration: none;
   transform: translateY(-1px);
-  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.12), 0 10px 24px rgba(var(--shadow-rgb), 0.12);
+  box-shadow: var(--ring), var(--shadow-md);
+  filter: saturate(1.06);
 }
 
 .primaryCta:hover {
-  background: rgb(var(--foreground-rgb));
+  background:
+    linear-gradient(rgb(var(--foreground-rgb)), rgb(var(--foreground-rgb))) padding-box,
+    var(--accent-gradient) border-box;
 }
 
 .primaryCta:focus-visible,

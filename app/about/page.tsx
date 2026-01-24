@@ -10,20 +10,19 @@ export default function AboutPage() {
     name: "森岡知也",
     role: "専門学生 / Web Developer",
     summary:
-      "Python / HTML / CSS / Lua を中心に制作しています。見た目だけで終わらせず、使いやすさと分かりやすさを意識して実装します。",
+      "Python / HTML / CSS / Lua を中心に制作しています。できる限り使いやすく、子供心ある作品を制作していきたいです",
   };
 
   const skills = [
-    "Next.js（App Router）",
-    "React / TypeScript",
+    "Next.js",
     "HTML / CSS",
     "Python",
     "Lua",
-    "microCMS連携",
   ] as const;
 
   const hobbies = [
-    "（追記予定：例）ゲーム / 音楽 / 読書 など",
+    "ゲーム（FPS）",
+    "音楽鑑賞",
   ] as const;
 
   return (
@@ -64,6 +63,27 @@ export default function AboutPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className={styles.section} aria-label="お気に入りの曲">
+        <h2 className={styles.h2}>お気に入りの曲</h2>
+        <div className={styles.mediaEmbed}>
+          <iframe
+            className={styles.mediaFrame}
+            src="https://www.youtube.com/embed/xefpHEg5UIA?start=1&rel=0"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
+        <a
+          className={styles.mediaLink}
+          href="https://www.youtube.com/watch?v=xefpHEg5UIA&list=RDxefpHEg5UIA&start_radio=1"
+          target="_blank"
+          rel="noreferrer"
+        >
+          YouTubeで開く
+        </a>
       </section>
     </main>
   );

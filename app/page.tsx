@@ -7,7 +7,7 @@ export default function Home() {
     headline: "ようこそ。ポートフォリオへ",
     role: "専門学生 / Web Developer",
     summary:
-      "Python / HTML / CSS / Lua を中心に制作しています。見た目だけで終わらせず、使いやすさと分かりやすさを意識して実装します。",
+      "森岡知也です。Python / HTML / CSS / Lua を中心に制作しています",
     links: {
       github: "https://github.com/mosan01",
       x: "",
@@ -17,6 +17,7 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
+      <div className={styles.pageBg} aria-hidden="true" />
       <main id="top" className={styles.main}>
         <section className={styles.hero} aria-label="ヒーロー">
           <div className={styles.heroBg} aria-hidden="true" />
@@ -28,12 +29,10 @@ export default function Home() {
                 .
               </span>
             </h1>
-            <p className={styles.lead}>
-              {profile.name} / {profile.summary}
-            </p>
+            <p className={styles.lead}>{profile.summary}</p>
 
             <div className={styles.ctaRow}>
-              <Link className={`${styles.secondaryCta} ${styles.whiteCta}`} href="/about">
+              <Link className={styles.secondaryCta} href="/about">
                 About（プロフィール）
               </Link>
               <Link className={styles.secondaryCta} href="/blog">

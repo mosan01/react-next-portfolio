@@ -77,6 +77,14 @@ html[data-theme="dark"] {
   --grid-line-opacity: 0.08;
 }
 
+html[data-device="sp"] {
+  --max-width: 720px;
+}
+
+html[data-device="tablet"] {
+  --max-width: 920px;
+}
+
 /* System preference fallback when no explicit theme chosen */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]) {
@@ -117,19 +125,20 @@ body {
   color: rgb(var(--foreground-rgb));
   background:
     radial-gradient(
-      900px 520px at 10% -10%,
-      rgba(var(--accent-rgb), 0.12),
-      rgba(var(--accent-rgb), 0) 60%
+      820px 520px at 8% -8%,
+      rgba(var(--accent-rgb), 0.18),
+      rgba(var(--accent-rgb), 0) 58%
     ),
     radial-gradient(
       760px 520px at 95% 0%,
-      rgba(var(--shadow-rgb), 0.08),
-      rgba(var(--shadow-rgb), 0) 62%
+      rgba(var(--accent-2-rgb), 0.16),
+      rgba(var(--accent-2-rgb), 0) 62%
     ),
+    linear-gradient(180deg, rgba(10, 12, 20, 0.06), rgba(10, 12, 20, 0)),
     rgb(var(--background-end-rgb));
   background-repeat: no-repeat;
-  background-size: 100% 100%, 100% 100%, auto;
-  background-position: 0 0, 0 0, 0 0;
+  background-size: 100% 100%, 100% 100%, 100% 100%, auto;
+  background-position: 0 0, 0 0, 0 0, 0 0;
   line-height: 1.7;
   text-rendering: optimizeLegibility;
 
@@ -142,6 +151,13 @@ body {
   flex-direction: column;
 }
 
+body > header,
+body > main,
+body > footer {
+  position: relative;
+  z-index: 1;
+}
+
 body::before {
   content: "";
   position: fixed;
@@ -149,23 +165,27 @@ body::before {
   pointer-events: none;
   z-index: -1;
   background:
-    linear-gradient(
-      120deg,
-      rgba(var(--accent-rgb), 0.34) 0%,
-      rgba(var(--background-end-rgb), 0) 44%,
-      rgba(var(--background-end-rgb), 0) 56%,
-      rgba(var(--accent-2-rgb), 0.28) 100%
+    radial-gradient(
+      720px 560px at 12% 18%,
+      rgba(56, 189, 248, 0.22),
+      rgba(56, 189, 248, 0) 62%
     ),
     radial-gradient(
-      720px 520px at 80% 18%,
-      rgba(var(--accent-2-rgb), 0.22),
-      rgba(var(--accent-rgb), 0) 60%
+      640px 520px at 88% 12%,
+      rgba(59, 130, 246, 0.2),
+      rgba(59, 130, 246, 0) 60%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.32) 0%,
+      rgba(15, 23, 42, 0.08) 45%,
+      rgba(15, 23, 42, 0) 100%
     );
   background-repeat: no-repeat;
-  background-size: 220% 220%, 140% 140%;
-  background-position: 0% 50%, 50% 50%;
-  filter: blur(52px) saturate(1.18);
-  opacity: 0.62;
+  background-size: 220% 220%, 180% 180%, 160% 160%;
+  background-position: 0% 50%, 60% 40%, 50% 50%;
+  filter: blur(54px) saturate(1.05);
+  opacity: 0.68;
   transform: translateZ(0);
 }
 
@@ -176,8 +196,12 @@ body::after {
   pointer-events: none;
   z-index: -1;
   background:
-    radial-gradient(circle at 30% 20%, rgba(var(--accent-2-rgb), 0.08), rgba(var(--accent-2-rgb), 0)
-        38%),
+    radial-gradient(circle at 18% 20%, rgba(56, 189, 248, 0.08), rgba(56, 189, 248, 0)
+        44%),
+    radial-gradient(circle at 82% 28%, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0)
+        46%),
+    radial-gradient(circle at 48% 78%, rgba(30, 64, 175, 0.08), rgba(30, 64, 175, 0)
+        50%),
     repeating-linear-gradient(
       45deg,
       rgba(var(--foreground-rgb), var(--grid-line-opacity)) 0,
@@ -185,8 +209,8 @@ body::after {
       rgba(var(--foreground-rgb), 0) 1px,
       rgba(var(--foreground-rgb), 0) var(--grid-line-gap)
     );
-  mix-blend-mode: overlay;
-  opacity: 0.72;
+  mix-blend-mode: soft-light;
+  opacity: 0.48;
 }
 
 html[data-theme="dark"] body::before {
@@ -203,19 +227,50 @@ body > main {
   }
 
   body::before {
-    animation: ambientGradient 30s ease-in-out infinite;
+    animation: ambientGradient 22s ease-in-out infinite, prismSpin 30s linear infinite;
+  }
+
+  body::after {
+    animation: sparkleDrift 20s ease-in-out infinite;
   }
 }
 
 @keyframes ambientGradient {
   0% {
-    background-position: 0% 50%, 50% 50%;
+    background-position: 0% 50%, 45% 45%, 40% 60%;
   }
   50% {
-    background-position: 100% 50%, 40% 60%;
+    background-position: 100% 50%, 60% 40%, 65% 35%;
   }
   100% {
-    background-position: 0% 50%, 50% 50%;
+    background-position: 0% 50%, 45% 45%, 40% 60%;
+  }
+}
+
+@keyframes prismSpin {
+  0% {
+    transform: translateZ(0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateZ(0) rotate(18deg) scale(1.08);
+  }
+  100% {
+    transform: translateZ(0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes sparkleDrift {
+  0% {
+    background-position: 18% 18%, 82% 26%, 38% 82%, 0 0;
+    filter: hue-rotate(0deg) saturate(1.05);
+  }
+  50% {
+    background-position: 34% 8%, 68% 46%, 54% 66%, 0 0;
+    filter: hue-rotate(30deg) saturate(1.2);
+  }
+  100% {
+    background-position: 18% 18%, 82% 26%, 38% 82%, 0 0;
+    filter: hue-rotate(0deg) saturate(1.05);
   }
 }
 

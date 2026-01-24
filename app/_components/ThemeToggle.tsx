@@ -15,32 +15,14 @@ function applyTheme(theme: Theme) {
   }
 }
 
-function getStoredTheme(): Theme | null {
-  try {
-    const value = localStorage.getItem("theme");
-    if (value === "light" || value === "dark") return value;
-    return null;
-  } catch {
-    return null;
-  }
-}
-
 export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
   const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
     setMounted(true);
-    const stored = getStoredTheme();
-    if (stored) {
-      setTheme(stored);
-      applyTheme(stored);
-      return;
-    }
-
-    // Follow system preference by default (no data-theme)
-    const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false;
-    setTheme(prefersDark ? "dark" : "light");
+    setTheme("light");
+    applyTheme("light");
   }, []);
 
   const label = mounted ? (theme === "dark" ? "Dark" : "Light") : "Theme";

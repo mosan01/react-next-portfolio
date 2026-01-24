@@ -53,7 +53,7 @@
   padding: 1rem;
   box-shadow: var(--shadow-sm);
   transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
-  animation: borderFlow 8s ease-in-out infinite;
+  animation: borderFlow 8s ease-in-out infinite, cardFloat 10s ease-in-out infinite;
 }
 
 .card:hover {
@@ -110,6 +110,18 @@
   }
   100% {
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes cardFloat {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 

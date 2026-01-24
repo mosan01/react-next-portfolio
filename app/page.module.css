@@ -1,11 +1,40 @@
 .page {
   min-height: 100vh;
+  position: relative;
+  background: transparent;
+}
+
+.pageBg {
+  position: absolute;
+  top: -140px;
+  left: 50%;
+  width: 100vw;
+  height: clamp(360px, 55vh, 620px);
+  transform: translateX(-50%);
+  pointer-events: none;
+  background:
+    radial-gradient(
+      560px 300px at -18% 18%,
+      rgba(var(--accent-rgb), 0.22),
+      rgba(var(--accent-rgb), 0) 60%
+    ),
+    radial-gradient(
+      520px 260px at 88% 14%,
+      rgba(var(--accent-2-rgb), 0.16),
+      rgba(var(--accent-2-rgb), 0) 62%
+    );
+  filter: blur(18px) saturate(1.25);
+  opacity: 0.74;
+  animation: heroDrift 18s ease-in-out infinite;
+  z-index: 0;
 }
 
 .main {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 1.25rem 5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .hero {
@@ -34,16 +63,25 @@
     radial-gradient(
       520px 260px at 88% 14%,
       rgba(var(--accent-2-rgb), 0.16),
-      rgba(var(--shadow-rgb), 0) 62%
+      rgba(var(--accent-2-rgb), 0) 62%
     );
   filter: blur(18px) saturate(1.25);
   opacity: 0.74;
+  animation: heroDrift 18s ease-in-out infinite, breathe 16s ease-in-out infinite;
 }
 
 .heroInner {
   position: relative;
   display: grid;
   gap: 1.1rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+  animation: breathe 14s ease-in-out infinite;
 }
 
 .kicker {
@@ -219,12 +257,21 @@
   display: grid;
   gap: 0.7rem;
   box-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.06);
+  animation: cardFloat 9s ease-in-out infinite;
 }
 
 .card:hover {
   border-color: rgba(var(--foreground-rgb), 0.25);
   background: rgba(var(--card-rgb), 1);
   text-decoration: none;
+}
+
+.card:nth-child(2n) {
+  animation-delay: 0.8s;
+}
+
+.card:nth-child(3n) {
+  animation-delay: 1.6s;
 }
 
 .cardTop {
@@ -279,14 +326,82 @@
   padding: 0.9rem 1rem;
   font-weight: 600;
   opacity: 0.95;
+  animation: chipPulse 8s ease-in-out infinite;
+}
+
+.skill:nth-child(2n) {
+  animation-delay: 0.6s;
+}
+
+.chip {
+  animation: chipPulse 7s ease-in-out infinite;
+}
+
+.chip:nth-child(3n) {
+  animation-delay: 0.5s;
+}
+
+@keyframes heroDrift {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  50% {
+    transform: translate3d(-50%, 10px, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes cardFloat {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes chipPulse {
+  0% {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  50% {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 24px rgba(var(--shadow-rgb), 0.12);
+  }
+  100% {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+}
+
+@keyframes breathe {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 
 @media (prefers-reduced-motion) {
   .primaryCta,
   .secondaryCta,
-  .card {
+  .card,
+  .heroBg,
+  .chip,
+  .skill {
     transition: none;
+    animation: none;
   }
 }
 

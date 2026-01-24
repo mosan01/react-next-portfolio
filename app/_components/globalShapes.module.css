@@ -1,0 +1,155 @@
+.layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.shape {
+  position: absolute;
+  opacity: 0.42;
+  filter: blur(0.2px);
+  mix-blend-mode: screen;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.circle {
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0))
+      padding-box,
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.9), rgba(59, 130, 246, 0.2))
+      border-box;
+  box-shadow: 0 0 18px rgba(59, 130, 246, 0.3);
+}
+
+.square {
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.75), rgba(168, 85, 247, 0.45));
+  box-shadow: 0 0 18px rgba(236, 72, 153, 0.28);
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 24px solid transparent;
+  border-right: 24px solid transparent;
+  border-bottom: 42px solid rgba(16, 185, 129, 0.65);
+  filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.3));
+  transform-origin: 50% 65%;
+}
+
+.s1 {
+  width: 68px;
+  height: 68px;
+  top: 14%;
+  left: 16%;
+  animation: floatA 7s ease-in-out infinite, spinSlow 10s linear infinite;
+  animation-delay: 0s, 0.1s;
+}
+
+.s2 {
+  width: 56px;
+  height: 56px;
+  top: 18%;
+  left: 70%;
+  animation: floatB 7.5s ease-in-out infinite, spinSlow 10.5s linear infinite;
+  animation-delay: 0.4s, 0.1s;
+}
+
+.s3 {
+  top: 32%;
+  left: 50%;
+  animation: floatC 8s ease-in-out infinite, spin 9s linear infinite;
+  animation-delay: 0.8s, 0s;
+}
+
+@keyframes floatA {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(18px, -26px, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes floatB {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-20px, 18px, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes floatC {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(14px, 24px, 0) scale(1.07);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes floatD {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-16px, -22px, 0) scale(1.09);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(24deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes spinSlow {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(14deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 860px) {
+  .shape {
+    opacity: 0.32;
+  }
+
+  .s1 {
+    width: 58px;
+    height: 58px;
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .shape,
+  .triangle {
+    animation: none;
+  }
+}

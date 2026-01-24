@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JetBrains_Mono, M_PLUS_Rounded_1c, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import BackToTopButton from "./_components/BackToTopButton";
+import DeviceClassSetter from "./_components/DeviceClassSetter";
 import SiteFooter from "./_components/SiteFooter";
 import SiteHeader from "./_components/SiteHeader";
 
@@ -39,8 +40,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" data-theme="light">
       <body className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable}`}>
+        <DeviceClassSetter />
         <SiteHeader />
         {children}
         <BackToTopButton />

@@ -53,7 +53,7 @@
   background-position: 0 0, 0% 50%;
   padding: 1.1rem 1.1rem;
   box-shadow: var(--shadow-sm);
-  animation: borderFlow 9s ease-in-out infinite;
+  animation: borderFlow 9s ease-in-out infinite, cardFloat 12s ease-in-out infinite;
 }
 
 .code {
@@ -80,7 +80,7 @@
   display: grid;
   gap: 0.45rem;
   box-shadow: var(--shadow-sm);
-  animation: borderFlow 9s ease-in-out infinite;
+  animation: borderFlow 9s ease-in-out infinite, cardFloat 10s ease-in-out infinite;
 }
 
 .card:hover {
@@ -127,7 +127,7 @@
   background-position: 0 0, 0% 50%;
   padding: 1.25rem;
   box-shadow: var(--shadow-sm);
-  animation: borderFlow 10s ease-in-out infinite;
+  animation: borderFlow 10s ease-in-out infinite, cardFloat 13s ease-in-out infinite;
 }
 
 .toc {
@@ -141,7 +141,15 @@
   background-position: 0 0, 0% 50%;
   padding: 1rem 1.1rem;
   box-shadow: var(--shadow-sm);
-  animation: borderFlow 10s ease-in-out infinite;
+  animation: borderFlow 10s ease-in-out infinite, cardFloat 14s ease-in-out infinite;
+}
+
+.card:nth-child(2n) {
+  animation-delay: 0.9s;
+}
+
+.card:nth-child(3n) {
+  animation-delay: 1.8s;
 }
 
 .tocTitle {
@@ -173,6 +181,18 @@
   }
   100% {
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes cardFloat {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 

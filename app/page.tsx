@@ -17,7 +17,6 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
-      <div className={styles.pageBg} aria-hidden="true" />
       <main id="top" className={styles.main}>
         <section className={styles.hero} aria-label="ヒーロー">
           <div className={styles.heroBg} aria-hidden="true" />

@@ -18,6 +18,7 @@ const fontDisplay = M_PLUS_Rounded_1c({
   weight: ["500", "700", "800"],
   variable: "--font-display",
   display: "swap",
+  adjustFontFallback: false,
 });
 
 const fontMono = JetBrains_Mono({

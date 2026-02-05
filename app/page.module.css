@@ -44,7 +44,6 @@
   opacity: 0.68;
   animation: heroDrift 18s ease-in-out infinite, breathe 16s ease-in-out infinite;
   will-change: transform;
-<<<<<<< HEAD
 }
 
 .heroBg::before,
@@ -82,8 +81,6 @@
   opacity: 0.35;
   animation: heroSpin 30s linear infinite;
   filter: blur(18px);
-=======
->>>>>>> 4b8df190920aed7f920e03e3b8b56dc1394ac48b
 }
 
 .heroInner {

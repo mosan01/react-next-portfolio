@@ -193,12 +193,11 @@ body::before {
       rgba(15, 23, 42, 0) 100%
     );
   background-repeat: no-repeat;
-  background-size: 220% 220%, 180% 180%, 160% 160%, 200% 200%;
-  background-position: 0% 50%, 60% 40%, 50% 50%, 40% 70%;
-  filter: blur(34px);
-  opacity: 0.78;
-  transform: translate3d(0, 0, 0);
-  will-change: transform;
+  background-size: 220% 220%, 180% 180%, 160% 160%;
+  background-position: 0% 50%, 60% 40%, 50% 50%;
+  filter: blur(54px) saturate(1.05);
+  opacity: 0.68;
+  transform: translateZ(0);
 }
 
 body::after {
@@ -248,85 +247,51 @@ body > main {
   }
 
   body::before {
-    animation: ambientMotion 26s ease-in-out infinite, auroraShift 28s ease-in-out infinite;
+    animation: ambientGradient 22s ease-in-out infinite, prismSpin 30s linear infinite;
   }
 
   body::after {
-    animation: sparkleFloat 20s ease-in-out infinite, gridDrift 40s linear infinite;
+    animation: sparkleDrift 20s ease-in-out infinite;
   }
 }
 
-@keyframes ambientMotion {
+@keyframes ambientGradient {
   0% {
-    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    background-position: 0% 50%, 45% 45%, 40% 60%;
   }
   50% {
-    transform: translate3d(44px, -28px, 0) rotate(18deg) scale(1.1);
+    background-position: 100% 50%, 60% 40%, 65% 35%;
   }
   100% {
-    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    background-position: 0% 50%, 45% 45%, 40% 60%;
   }
 }
 
-@keyframes sparkleFloat {
+@keyframes prismSpin {
   0% {
-    transform: translate3d(0, 0, 0);
-    opacity: 0.52;
-    background-position: 18% 18%, 82% 26%, 38% 82%, 48% 42%, 0 0;
+    transform: translateZ(0) rotate(0deg) scale(1);
   }
   50% {
-    transform: translate3d(-26px, 18px, 0);
-    opacity: 0.6;
-    background-position: 34% 8%, 68% 46%, 54% 66%, 64% 58%, 0 0;
+    transform: translateZ(0) rotate(18deg) scale(1.08);
   }
   100% {
-    transform: translate3d(0, 0, 0);
-    opacity: 0.52;
-    background-position: 18% 18%, 82% 26%, 38% 82%, 48% 42%, 0 0;
+    transform: translateZ(0) rotate(0deg) scale(1);
   }
 }
 
-@keyframes auroraShift {
+@keyframes sparkleDrift {
   0% {
-    background-position: 0% 50%, 60% 40%, 50% 50%, 40% 70%;
+    background-position: 18% 18%, 82% 26%, 38% 82%, 0 0;
+    filter: hue-rotate(0deg) saturate(1.05);
   }
   50% {
-    background-position: 24% 46%, 42% 58%, 60% 36%, 52% 62%;
+    background-position: 34% 8%, 68% 46%, 54% 66%, 0 0;
+    filter: hue-rotate(30deg) saturate(1.2);
   }
   100% {
-    background-position: 0% 50%, 60% 40%, 50% 50%, 40% 70%;
+    background-position: 18% 18%, 82% 26%, 38% 82%, 0 0;
+    filter: hue-rotate(0deg) saturate(1.05);
   }
-}
-
-@keyframes gridDrift {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(24px, -18px, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@media (max-width: 720px) {
-  body::before {
-    filter: blur(26px);
-    opacity: 0.7;
-  }
-
-  body::after {
-    opacity: 0.48;
-  }
-}
-
-html[data-theme="light"] body::before {
-  opacity: 0.8;
-}
-
-html[data-theme="light"] body::after {
-  opacity: 0.58;
 }
 
 a {

@@ -21,7 +21,11 @@
     radial-gradient(660px 320px at 92% 12%, rgba(var(--accent-2-rgb), 0.13), rgba(var(--accent-2-rgb), 0)
         74%);
   opacity: 0.68;
+<<<<<<< HEAD
   animation: heroDrift 14s ease-in-out infinite, heroPulse 10s ease-in-out infinite;
+=======
+  animation: heroDrift 18s ease-in-out infinite;
+>>>>>>> 4b8df190920aed7f920e03e3b8b56dc1394ac48b
   will-change: transform;
 }
 
@@ -181,7 +185,11 @@
     transform: translate3d(0, 0, 0);
   }
   50% {
+<<<<<<< HEAD
     transform: translate3d(54px, 34px, 0) scale(1.04);
+=======
+    transform: translate3d(28px, 20px, 0);
+>>>>>>> 4b8df190920aed7f920e03e3b8b56dc1394ac48b
   }
   100% {
     transform: translate3d(0, 0, 0);

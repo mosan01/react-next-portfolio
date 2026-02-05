@@ -40,6 +40,12 @@
     rgba(var(--accent-2-rgb), 1)
   );
 
+  --aurora-1: 56, 189, 248;
+  --aurora-2: 99, 102, 241;
+  --aurora-3: 168, 85, 247;
+  --noise-opacity: 0.06;
+  --grid-line-width: 1px;
+
   /* Kept for compatibility with existing CSS modules; intentionally subtle */
   --primary-glow: rgb(var(--accent-rgb));
   --secondary-glow: rgb(255, 255, 255);
@@ -175,6 +181,11 @@ body::before {
       rgba(59, 130, 246, 0.2),
       rgba(59, 130, 246, 0) 60%
     ),
+    radial-gradient(
+      520px 480px at 50% 88%,
+      rgba(168, 85, 247, 0.14),
+      rgba(168, 85, 247, 0) 62%
+    ),
     linear-gradient(
       135deg,
       rgba(15, 23, 42, 0.32) 0%,
@@ -182,8 +193,8 @@ body::before {
       rgba(15, 23, 42, 0) 100%
     );
   background-repeat: no-repeat;
-  background-size: 220% 220%, 180% 180%, 160% 160%;
-  background-position: 0% 50%, 60% 40%, 50% 50%;
+  background-size: 220% 220%, 180% 180%, 160% 160%, 200% 200%;
+  background-position: 0% 50%, 60% 40%, 50% 50%, 40% 70%;
   filter: blur(34px);
   opacity: 0.78;
   transform: translate3d(0, 0, 0);
@@ -203,11 +214,18 @@ body::after {
         46%),
     radial-gradient(circle at 48% 78%, rgba(30, 64, 175, 0.08), rgba(30, 64, 175, 0)
         50%),
+    conic-gradient(
+      from 120deg at 60% 40%,
+      rgba(var(--aurora-1), 0.08),
+      rgba(var(--aurora-2), 0.06),
+      rgba(var(--aurora-3), 0.08),
+      rgba(var(--aurora-1), 0.08)
+    ),
     repeating-linear-gradient(
       45deg,
       rgba(var(--foreground-rgb), var(--grid-line-opacity)) 0,
-      rgba(var(--foreground-rgb), var(--grid-line-opacity)) 1px,
-      rgba(var(--foreground-rgb), 0) 1px,
+      rgba(var(--foreground-rgb), var(--grid-line-opacity)) var(--grid-line-width),
+      rgba(var(--foreground-rgb), 0) var(--grid-line-width),
       rgba(var(--foreground-rgb), 0) var(--grid-line-gap)
     );
   mix-blend-mode: soft-light;
@@ -230,11 +248,11 @@ body > main {
   }
 
   body::before {
-    animation: ambientMotion 26s ease-in-out infinite;
+    animation: ambientMotion 26s ease-in-out infinite, auroraShift 28s ease-in-out infinite;
   }
 
   body::after {
-    animation: sparkleFloat 20s ease-in-out infinite;
+    animation: sparkleFloat 20s ease-in-out infinite, gridDrift 40s linear infinite;
   }
 }
 
@@ -254,17 +272,52 @@ body > main {
   0% {
     transform: translate3d(0, 0, 0);
     opacity: 0.52;
-    background-position: 18% 18%, 82% 26%, 38% 82%, 0 0;
+    background-position: 18% 18%, 82% 26%, 38% 82%, 48% 42%, 0 0;
   }
   50% {
     transform: translate3d(-26px, 18px, 0);
     opacity: 0.6;
-    background-position: 34% 8%, 68% 46%, 54% 66%, 0 0;
+    background-position: 34% 8%, 68% 46%, 54% 66%, 64% 58%, 0 0;
   }
   100% {
     transform: translate3d(0, 0, 0);
     opacity: 0.52;
-    background-position: 18% 18%, 82% 26%, 38% 82%, 0 0;
+    background-position: 18% 18%, 82% 26%, 38% 82%, 48% 42%, 0 0;
+  }
+}
+
+@keyframes auroraShift {
+  0% {
+    background-position: 0% 50%, 60% 40%, 50% 50%, 40% 70%;
+  }
+  50% {
+    background-position: 24% 46%, 42% 58%, 60% 36%, 52% 62%;
+  }
+  100% {
+    background-position: 0% 50%, 60% 40%, 50% 50%, 40% 70%;
+  }
+}
+
+@keyframes gridDrift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(24px, -18px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (max-width: 720px) {
+  body::before {
+    filter: blur(26px);
+    opacity: 0.7;
+  }
+
+  body::after {
+    opacity: 0.48;
   }
 }
 

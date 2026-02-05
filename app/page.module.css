@@ -19,6 +19,7 @@
   display: flex;
   align-items: center;
   padding: 3.25rem 0 3rem;
+  overflow: hidden;
 }
 
 .heroBg {
@@ -45,6 +46,43 @@
   will-change: transform;
 }
 
+.heroBg::before,
+.heroBg::after {
+  content: "";
+  position: absolute;
+  inset: -10% -5% -20% -5%;
+  background:
+    radial-gradient(
+      420px 260px at 18% 24%,
+      rgba(56, 189, 248, 0.16),
+      rgba(56, 189, 248, 0) 60%
+    ),
+    radial-gradient(
+      380px 240px at 80% 20%,
+      rgba(168, 85, 247, 0.14),
+      rgba(168, 85, 247, 0) 64%
+    );
+  opacity: 0.7;
+  mix-blend-mode: screen;
+  animation: heroGlow 22s ease-in-out infinite;
+  filter: blur(10px);
+}
+
+.heroBg::after {
+  inset: -30% -20% -10% -20%;
+  background:
+    conic-gradient(
+      from 140deg at 50% 50%,
+      rgba(59, 130, 246, 0.12),
+      rgba(168, 85, 247, 0.14),
+      rgba(56, 189, 248, 0.12),
+      rgba(59, 130, 246, 0.12)
+    );
+  opacity: 0.35;
+  animation: heroSpin 30s linear infinite;
+  filter: blur(18px);
+}
+
 .heroInner {
   position: relative;
   display: grid;
@@ -56,7 +94,39 @@
   font-size: clamp(2.4rem, 5vw, 4.2rem);
   line-height: 1.03;
   letter-spacing: -0.03em;
-  animation: breathe 14s ease-in-out infinite;
+  position: relative;
+  
+  /* ベースは黒っぽく(foreground)、アクセントが一瞬通り過ぎるイメージ */
+  background: linear-gradient(
+    110deg,
+    rgb(var(--foreground-rgb)) 35%,
+    rgb(var(--accent-rgb)) 50%,
+    rgb(var(--foreground-rgb)) 65%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* 5秒周期で1回動く設定 */
+  animation: shineMove 5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite, breathe 14s ease-in-out infinite;
+}
+
+.title::before {
+  content: "";
+  position: absolute;
+  inset: -20px -30px;
+  /* 背景を黒目の色(shadow-rgb)に変更 */
+  background: radial-gradient(
+    closest-side,
+    rgba(var(--shadow-rgb), 0.18),
+    rgba(var(--shadow-rgb), 0.08) 50%,
+    transparent 100%
+  );
+  filter: blur(20px);
+  z-index: -1;
+  border-radius: 40%;
+  animation: glowPulse 5s ease-in-out infinite alternate;
 }
 
 .kicker {
@@ -145,6 +215,7 @@
 .secondaryCta {
   transition: border-color 140ms ease, background 140ms ease, color 140ms ease, transform 180ms ease,
     box-shadow 180ms ease, filter 180ms ease;
+  backdrop-filter: blur(8px);
 }
 
 .primaryCta:hover,
@@ -199,6 +270,8 @@
 
 .section {
   padding: 3.2rem 0 0;
+  content-visibility: auto;
+  contain-intrinsic-size: 700px;
 }
 
 .sectionHeader {
@@ -228,7 +301,8 @@
   border: 1px solid rgba(var(--callout-border-rgb), 1);
   background: rgba(var(--callout-rgb), 1);
   padding: 1.1rem 1.1rem 1.05rem;
-  transition: border-color 160ms ease, background 160ms ease;
+  transition: border-color 160ms ease, background 160ms ease, transform 200ms ease,
+    box-shadow 200ms ease;
   display: grid;
   gap: 0.7rem;
   box-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.06);
@@ -239,6 +313,8 @@
   border-color: rgba(var(--foreground-rgb), 0.25);
   background: rgba(var(--card-rgb), 1);
   text-decoration: none;
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 18px 42px rgba(var(--shadow-rgb), 0.18);
 }
 
 .card:nth-child(2n) {
@@ -328,6 +404,30 @@
   }
 }
 
+@keyframes heroGlow {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate3d(18px, -10px, 0) scale(1.06);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.6;
+  }
+}
+
+@keyframes heroSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes cardFloat {
   0% {
     transform: translateY(0);
@@ -368,7 +468,27 @@
 }
 
 
-@media (prefers-reduced-motion) {
+@keyframes shineMove {
+  0% {
+    background-position: 100% 0%;
+  }
+  60%, 100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
   .primaryCta,
   .secondaryCta,
   .card,
@@ -376,6 +496,11 @@
   .chip,
   .skill {
     transition: none;
+    animation: none;
+  }
+
+  .heroBg::before,
+  .heroBg::after {
     animation: none;
   }
 }
@@ -395,6 +520,41 @@
 
   .heroMeta {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .main {
+    padding: 0 1rem 4rem;
+  }
+
+  .hero {
+    padding: 4.2rem 0 2.8rem;
+    min-height: auto;
+  }
+
+  .title {
+    font-size: clamp(2rem, 9vw, 3.1rem);
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+
+  .ctaRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .primaryCta,
+  .secondaryCta {
+    width: 100%;
+    text-align: center;
+  }
+
+  .heroBg {
+    top: -100px;
+    height: clamp(300px, 50vh, 520px);
   }
 }
 

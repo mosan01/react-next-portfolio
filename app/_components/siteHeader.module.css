@@ -238,4 +238,13 @@ html[data-theme="dark"] .mobileNavLink[data-active="true"] {
     border-color: rgba(var(--callout-border-rgb), 1);
     background: rgba(var(--callout-rgb), 1);
   }
+
+  .header {
+    border-bottom: none;
+    box-shadow: none;
+  }
+
+  .header::after {
+    display: none;
+  }
 }
